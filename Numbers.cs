@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -16,7 +17,9 @@ namespace Lab2
         private bool TrueFalse;
         private string color;
         private string buttoncontent;
+        private int usermove = 0;
         public int X { get; set; }
+
         public bool Truefalse
         {
             get
@@ -37,6 +40,7 @@ namespace Lab2
             set
             {
                 ispush = value;
+                usermove++;
                 OnPropertyChanged("IsPush");
                 OnPropertyChanged("Color");
                 OnPropertyChanged("ButtonContent");
@@ -62,17 +66,6 @@ namespace Lab2
             this.IsPush = false;
         }
 
-        private Command pickCell;
-        public Command PickCell
-        {
-            get
-            {
-                return pickCell ?? (pickCell = new Command(obj =>
-                {
-                    DeleteThisCell();
-                }));
-            }
-        }
         public Numbers(bool TrueFalse, bool ispush, int x)
         {
             this.TrueFalse = TrueFalse;

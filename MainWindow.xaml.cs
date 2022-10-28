@@ -21,18 +21,19 @@ namespace Lab2
     public partial class MainWindow : Window
     {
         public AppViewModel appvm = new AppViewModel();
-
         Binding amountofbuttons = new Binding();
-        Binding labelusermoves = new Binding();
+        Binding usermovecounter = new Binding();
 
         public MainWindow()
         {
             InitializeComponent();
             amountofbuttons.Path = new PropertyPath("AmountContent");
             AmountOfButtons.SetBinding(Label.ContentProperty, amountofbuttons);
+            usermovecounter.Path = new PropertyPath("UserMoveContent");
+            UserMoveCounter.SetBinding(Label.ContentProperty, amountofbuttons);
         }
 
-        
+
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (!Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) & e.Key != Key.Back | e.Key == Key.Space)
@@ -42,15 +43,14 @@ namespace Lab2
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            StartButton.IsEnabled = false;
-            TextBoxRule.IsEnabled = false;
-        }
-
         private void EndGame_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //UserMoveCounter.Items.Add(button1.Content);
         }
     }
 

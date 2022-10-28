@@ -21,16 +21,17 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button x:Name="Button" Width="100" Height="50" Content ="{Binding ButtonContent}" Command ="{Binding PickCell}" IsEnabled="{Binding IsPush}"/>
+                    <Button x:Name="button1" Width="100" Height="50" Content ="{Binding ButtonContent}" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.PickCell}" CommandParameter="{Binding Path = ButtonContent}" IsEnabled="{Binding IsPush}" Click="Button_Click"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <TextBox x:Name="TextBoxRule" Margin="10,438,206.6,0" TextWrapping="Wrap" Height="26" VerticalAlignment="Top" KeyDown="TextBox_KeyDown"/>
         <Label x:Name="Label" Content="Введите количество кнопок" HorizontalAlignment="Right" Margin="0,387,166.6,0" Height="26" VerticalAlignment="Top" Width="187"/>
-        <Button x:Name="StartButton" Content="Начать игру" HorizontalAlignment="Right" Margin="0,359,27.6,0" VerticalAlignment="Top" Width="139" Height="46" CommandParameter="{Binding ElementName=TextBoxRule, Path=Text}" Command="{Binding StartGame}" Click="Button_Click"/>
+        <Button x:Name="StartButton" Content="Начать игру" HorizontalAlignment="Right" Margin="0,359,27.6,0" VerticalAlignment="Top" Width="139" Height="46" CommandParameter="{Binding ElementName=TextBoxRule, Path=Text}" Command="{Binding StartGame}"/>
         <Label x:Name="LabelUserMoves" Content="Количество загаданных кнопок" HorizontalAlignment="Left" Margin="59,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.333,1.125" Width="182"/>
         <Label x:Name="AmountOfButtons" Content="" HorizontalAlignment="Left" Margin="59,0,0,394.8" VerticalAlignment="Bottom" RenderTransformOrigin="-7.417,-0.5" Width="238"/>
         <Button x:Name="EndGame" Content="Закончить игру" HorizontalAlignment="Right" Margin="0,0,27.6,17.8" VerticalAlignment="Bottom" Width="139" Height="45" Click="EndGame_Click"/>
+        <ListBox x:Name="UserMoveCounter" HorizontalAlignment="Right" Height="132" Margin="0,144,56.6,0" VerticalAlignment="Top" Width="238" ItemsSource="{Binding NumHistory}"/>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
